@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../Dashboard/Dashboard.module.css'
-const Dashboard = () => {
+const Dashboard = ({setIslogin}) => {
 
     const [session , setSession] = useState(false);
     const [counter , setCounter] = useState(false)
@@ -38,11 +38,17 @@ const Dashboard = () => {
           ));
     }
 
+
+    const logout = () => {
+        setIslogin(false);
+        localStorage.removeItem("autionpeUserID")
+    }
+
   return (
     <div className={styles.section}>
         <div className={styles.heading}>
         <h1>Dashboard</h1>
-        <button>Logout</button>
+        <button onClick={()=>logout()} >Logout</button>
         </div>
         <div style={{width:'90%' , display:'flex'}}>
 <div className={styles.task}>
