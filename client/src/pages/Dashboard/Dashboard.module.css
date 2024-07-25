@@ -36,3 +36,17 @@
     border-radius: 19px;
     padding: 1rem;
 }
+
+.clock{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    display: flex;
+    padding: 1rem 0rem;
+    align-items: center;
+    gap: 1rem;
+    h1{
+        margin: 0%;
+        color: rgb(199, 198, 192);
+    }
+}
