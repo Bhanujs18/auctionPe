@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../Dashboard/Dashboard.module.css'
+import axios from 'axios';
 const Dashboard = ({setIslogin}) => {
 
     const [session , setSession] = useState(false);
@@ -55,6 +56,26 @@ const Dashboard = ({setIslogin}) => {
         localStorage.removeItem("autionpeUserID")
     }
 
+
+    let apikey = "https://fakestoreapi.com/products";
+
+    const [apiData , setApiData] = useState();
+
+    const fetchData = async() => {
+    try {
+      const res = await axios.get(apikey);
+      if(res?.data){
+        setApiData(res?.data.filter((cur)=>cur.category === "men's clothing"))
+      }
+    } catch (error) {
+      
+    }
+    }
+
+    useEffect(()=>{
+      fetchData();
+    },[])
+
   return (
     <div className={styles.section}>
         <div className={styles.heading}>
@@ -87,6 +108,16 @@ const Dashboard = ({setIslogin}) => {
      </div>
     ))}
    
+</div>
+
+<div>
+  {apiData && apiData.map((cur)=>{
+    return(
+      <div style={{width:'5rem' , height : '5rem'}}>
+        <img  style={{width:'5rem' , height : '5rem'}} src={cur?.image} />
+      </div>
+    )
+  })}
 </div>
 
 </div>
